@@ -396,6 +396,7 @@ static void SetupKeymap(void)
     RaylibKeyMap[KEY_KP_ADD] = ImGuiKey_KeypadAdd;
     RaylibKeyMap[KEY_KP_ENTER] = ImGuiKey_KeypadEnter;
     RaylibKeyMap[KEY_KP_EQUAL] = ImGuiKey_KeypadEqual;
+
 }
 
 static void SetupGlobals(void)
@@ -468,6 +469,7 @@ void rlImGuiShutdown(void)
 
     ImGui::DestroyContext(GlobalContext);
     GlobalContext = nullptr;
+    RaylibKeyMap.clear();
 }
 
 void rlImGuiImage(const Texture* image)
