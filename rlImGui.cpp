@@ -560,7 +560,7 @@ void rlImGuiImageRect(const Texture* image, int destWidth, int destHeight, Recta
         uv1.y = uv0.y + (float)(sourceRect.height / image->height);
     }
 
-    ImGui::Image((ImTextureID)image, ImVec2(float(destWidth), float(destHeight)), uv0, uv1);
+    ImGui::Image((ImTextureID)image, ImVec2(float(destWidth), float(destHeight)), ImVec2(0, 1), ImVec2(1, 0));
 }
 
 void rlImGuiImageRenderTexture(const RenderTexture* image)
@@ -574,7 +574,7 @@ void rlImGuiImageRenderTexture(const RenderTexture* image)
     rlImGuiImageRect(&image->texture, image->texture.width, image->texture.height, Rectangle{ 0,0, float(image->texture.width), -float(image->texture.height) });
 }
 
-void rlImGuiImageRenderTextureFit(const RenderTexture* image, bool center)
+void rlImGuiImageRenderTextureFit(const Texture* image, bool center)
 {
     if (!image)
         return;
@@ -584,16 +584,16 @@ void rlImGuiImageRenderTextureFit(const RenderTexture* image, bool center)
 
     ImVec2 area = ImGui::GetContentRegionAvail();
 
-    float scale =  area.x / image->texture.width;
+    float scale =  area.x / image->width;
 
-    float y = image->texture.height * scale;
+    float y = image->height * scale;
     if (y > area.y)
     {
-        scale = area.y / image->texture.height;
+        scale = area.y / image->height;
     }
 
-    int sizeX = int(image->texture.width * scale);
-    int sizeY = int(image->texture.height * scale);
+    int sizeX = int(image->width * scale);
+    int sizeY = int(image->height * scale);
 
     if (center)
     {
@@ -602,7 +602,7 @@ void rlImGuiImageRenderTextureFit(const RenderTexture* image, bool center)
         ImGui::SetCursorPosY(ImGui::GetCursorPosY() + (area.y / 2 - sizeY / 2));
     }
 
-    rlImGuiImageRect(&image->texture, sizeX, sizeY, Rectangle{ 0,0, float(image->texture.width), -float(image->texture.height) });
+    rlImGuiImageRect(image, sizeX, sizeY, Rectangle{ 0,0, float(image->width), -float(image->height) });
 }
 
 // raw ImGui backend API
