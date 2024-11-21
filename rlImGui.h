@@ -113,7 +113,12 @@ RLIMGUIAPI void rlImGuiEndInitImGui(void);
 /// <summary>
 /// Forces the font texture atlas to be recomputed and re-cached
 /// </summary>
+/// 
+
+
+
 RLIMGUIAPI void rlImGuiReloadFonts(void);
+
 
 // Advanced Update API
 

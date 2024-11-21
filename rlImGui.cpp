@@ -89,6 +89,7 @@ void ReloadFonts(void)
     io.Fonts->TexID = (ImTextureID)fontTexture;
 }
 
+
 static const char* GetClipTextCallback(ImGuiContext*)
 {
     return GetClipboardText();
@@ -251,6 +252,8 @@ void SetupFontAwesome(void)
 #endif
 
 }
+
+
 
 void SetupBackend(void)
 {
@@ -438,6 +441,8 @@ void rlImGuiReloadFonts(void)
     ReloadFonts();
 }
 
+
+
 void rlImGuiBegin(void)
 {
     ImGui::SetCurrentContext(GlobalContext);
@@ -597,8 +602,8 @@ void rlImGuiImageRenderTextureFit(const Texture* image, bool center)
 
     if (center)
     {
-        ImGui::SetCursorPosX(0);
-        ImGui::SetCursorPosX(area.x/2 - sizeX/2);
+       
+        ImGui::SetCursorPosX((area.x/2 - sizeX/2));
         ImGui::SetCursorPosY(ImGui::GetCursorPosY() + (area.y / 2 - sizeY / 2));
     }
 
